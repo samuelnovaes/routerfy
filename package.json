@@ -1,0 +1,27 @@
+{
+	"name": "auto-route",
+	"version": "1.0.0",
+	"description": "Automatic route generator for Express",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/samuelnovaes/auto-route.git"
+	},
+	"keywords": [
+		"automatic",
+		"route",
+		"generator",
+		"express",
+		"router",
+		"middleware"
+	],
+	"author": "Samuel Novaes Sena <samuel.novaes.96@gmail.com>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/samuelnovaes/auto-route/issues"
+	},
+	"homepage": "https://github.com/samuelnovaes/auto-route#readme"
+}
