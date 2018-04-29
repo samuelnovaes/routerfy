@@ -23,7 +23,7 @@ app.listen(8080)
 
 # Example
 
-Routes directory. Each JS file returns an [Express router](http://google.com)
+Routes directory. Each JS file must return an [Express router](http://google.com)
 
 ```
 routes
@@ -35,23 +35,11 @@ routes
 	|---foo.js
 	└---bar.js
 ```
-```javascript
-const express = require('express')
-const routerfy = require('routerfy')
+Generated routes
 
-const app = express()
-
-app.use('/api', routerfy('routes'))
-
-/*
-	Routes generated:
-	/
-	/foo
-	/bar
-	/dir
-	/dir/foo
-	/dir/bar
-*/
-
-app.listen(8080)
-```
+- /
+- /foo
+- /bar
+- /dir
+- /dir/foo
+- /dir/bar
