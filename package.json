@@ -1,5 +1,5 @@
 {
-	"name": "auto-route",
+	"name": "routerfy",
 	"version": "1.0.0",
 	"description": "Automatic route generator for Express",
 	"main": "index.js",
@@ -8,7 +8,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/samuelnovaes/auto-route.git"
+		"url": "git+https://github.com/samuelnovaes/routerfy.git"
 	},
 	"keywords": [
 		"automatic",
@@ -16,12 +16,13 @@
 		"generator",
 		"express",
 		"router",
-		"middleware"
+		"middleware",
+		"routerfy"
 	],
 	"author": "Samuel Novaes Sena <samuel.novaes.96@gmail.com>",
 	"license": "ISC",
 	"bugs": {
-		"url": "https://github.com/samuelnovaes/auto-route/issues"
+		"url": "https://github.com/samuelnovaes/routerfy/issues"
 	},
-	"homepage": "https://github.com/samuelnovaes/auto-route#readme"
+	"homepage": "https://github.com/samuelnovaes/routerfy#readme"
 }
