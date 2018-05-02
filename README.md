@@ -44,7 +44,7 @@ Generated routes
 - /dir/foo
 - /dir/bar
 
-# Router will ignore:
+# Routerfy will ignore:
 
 - Files or directories whose names begin with `_`
 - Scripts that don't export a function
