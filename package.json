@@ -1,6 +1,6 @@
 {
 	"name": "routerfy",
-	"version": "1.0.3",
+	"version": "1.0.4",
 	"description": "Automatic route generator for Express",
 	"main": "index.js",
 	"scripts": {
