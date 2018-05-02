@@ -23,7 +23,7 @@ app.listen(8080)
 
 # Example
 
-Routes directory. Each JS file must return an [Express router](http://google.com)
+Routes directory. Each JS file must return an [Express router](http://google.com) of a middleware
 
 ```
 routes
@@ -43,3 +43,8 @@ Generated routes
 - /dir
 - /dir/foo
 - /dir/bar
+
+# Router will ignore:
+
+- Files or directories whose names begin with `_`
+- Scripts that don't export a function

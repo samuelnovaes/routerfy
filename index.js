@@ -3,13 +3,16 @@ const path = require('path')
 
 const routerfy = (directory, router) => {
 	const files = fs.readdirSync(directory)
-	files.forEach(file => {
-		const filePath = path.join(directory, file)
-		if (fs.statSync(filePath).isFile() && path.extname(file) == '.js') {
-			router.use(`/${(file == 'index.js' ? '' : path.basename(file, '.js'))}`, require(path.resolve(directory, file)))
-		}
-		else if (fs.statSync(filePath).isDirectory()) {
-			router.use(`/${file}`, middleware(filePath))
+	files.map(file => {
+		if (file.charAt(0) != '_') {
+			const filePath = path.join(directory, file)
+			const stat = fs.statSync(filePath)
+			if (stat.isFile() && path.extname(file) == '.js') {
+				const routerModule = require(path.resolve(filePath))
+				if (typeof routerModule == 'function')
+					router.use(`/${(file == 'index.js' ? '' : path.basename(file, '.js'))}`, routerModule)
+			} else if (stat.isDirectory())
+				router.use(`/${file}`, middleware(filePath))
 		}
 	})
 }
