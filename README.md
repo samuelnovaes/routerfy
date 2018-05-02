@@ -23,7 +23,7 @@ app.listen(8080)
 
 # Example
 
-Routes directory. Each JS file must return an [Express router](http://google.com) or a middleware
+Routes directory. Each JS file must return an [Express router](http://expressjs.com/pt-br/4x/api.html#router)
 
 ```
 routes
