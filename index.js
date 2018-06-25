@@ -8,8 +8,8 @@ const routerfy = (directory, router) => {
 		const stat = fs.statSync(filePath)
 		if (stat.isFile() && path.extname(file) == '.js') {
 			const routerModule = require(path.resolve(filePath))
-			if (routerModule.router)
-				router.use(`/${(file == 'index.js' ? '' : path.basename(file, '.js'))}`, routerModule.router)
+			if (routerModule._router)
+				router.use(`/${(file == 'index.js' ? '' : path.basename(file, '.js'))}`, routerModule._router)
 		}
 		else if (stat.isDirectory())
 			router.use(`/${file}`, middleware(filePath))

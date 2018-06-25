@@ -47,8 +47,8 @@ routes/foo.js
 		res.send('I am foo.js')
 	})
 
-	//It must be exports.router to work properly, if not, this file will be ignored
-	exports.router = router
+	//It must be exports._router to work properly, if not, this file will be ignored
+	exports._router = router
 ```
 
 ## Generated routes
