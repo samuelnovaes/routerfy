@@ -1,4 +1,5 @@
 # routerfy
+
 Automatic route generator for Express
 
 # install
@@ -7,7 +8,7 @@ Automatic route generator for Express
 npm install routerfy
 ```
 
-# Usage
+# Example
 
 ```javascript
 const express = require('express')
@@ -16,14 +17,12 @@ const routerfy = require('routerfy')
 const app = express()
 
 //Generate routes from 'routes' directory
-app.use(routerfy('routes'))
+app.use('/api', routerfy('routes'))
 
 app.listen(8080)
 ```
 
-# Example
-
-Routes directory. Each JS file must return an [Express router](http://expressjs.com/pt-br/4x/api.html#router)
+## Routes directory
 
 ```
 routes
@@ -35,16 +34,32 @@ routes
 	|---foo.js
 	└---bar.js
 ```
-Generated routes
 
-- /
-- /foo
-- /bar
-- /dir
-- /dir/foo
-- /dir/bar
+## Example of JS router file
 
-# Routerfy will ignore:
+routes/foo.js
 
-- Files or directories whose names begin with `_`
-- Scripts that don't export a function
+```javascript
+	const router = require('express').Router()
+
+	//router.get, router.post, router.put, router.delete, ...
+	router.get('/', (req, res) => {
+		res.send('I am foo.js')
+	})
+
+	//It must be exports.router to work properly, if not, this file will be ignored
+	exports.router = router
+```
+
+## Generated routes
+
+*   /api/
+*   /api/foo
+*   /api/bar
+*   /api/dir
+*   /api/dir/foo
+*   /api/dir/bar
+
+# Important
+
+In case of crating a router with `routes/foo.js` and `routes/foo/index.js`, the priority is `routes/foo/index.js`.
