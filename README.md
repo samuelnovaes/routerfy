@@ -2,6 +2,8 @@
 
 Automatic route generator for Express
 
+[![NPM](https://nodei.co/npm/routerfy.png)](https://nodei.co/npm/routerfy/)
+
 # install
 
 ```bash
@@ -47,7 +49,7 @@ routes/foo.js
 		res.send('I am foo.js')
 	})
 
-	//It must be exports._router to work properly, if not, this file will be ignored
+	//It must be exports._router to work properly. If not, this file will be ignored
 	exports._router = router
 ```
 
@@ -62,4 +64,4 @@ routes/foo.js
 
 # Important
 
-In case of crating a router with `routes/foo.js` and `routes/foo/index.js`, the priority is `routes/foo/index.js`.
+In case of creating a router with `routes/foo.js` and `routes/foo/index.js`, the priority is `routes/foo/index.js`.
