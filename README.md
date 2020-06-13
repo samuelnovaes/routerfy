@@ -30,7 +30,7 @@ app.listen(8080)
 This file tree:
 
 ```
-pages/
+routes/
 --| user/
 -----| index.js
 -----| one.js
@@ -50,7 +50,7 @@ To define a dynamic route with a parameter, you need to define a JavaScript file
 This file tree:
 
 ```
-pages/
+routes/
 --| _slug/
 -----| comments.js
 -----| index.js
