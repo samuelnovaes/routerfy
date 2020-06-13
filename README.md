@@ -66,7 +66,7 @@ will automatically generate:
 - /:slug
 - /:slug/comments
 
-> Note: For dynamic routes to work properly, you must use the `{ mergeParams: true }`javascript option when calling the express.Router function
+> Note: For dynamic routes to work properly, you must use the `mergeParams: true`javascript option when calling the `express.Router` function
 
 ```javascript
 const router = require('express').Router({ mergeParams: true });
