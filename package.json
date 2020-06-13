@@ -1,6 +1,6 @@
 {
 	"name": "routerfy",
-	"version": "1.0.8",
+	"version": "2.0.0",
 	"description": "Automatic route generator for Express",
 	"main": "index.js",
 	"scripts": {
@@ -17,15 +17,15 @@
 		"express",
 		"router",
 		"middleware",
-		"routerfy"
+		"routerfy",
+		"nuxt",
+		"vue",
+		"generate"
 	],
 	"author": "Samuel Novaes Sena <samuel.novaes.96@gmail.com>",
 	"license": "ISC",
 	"bugs": {
 		"url": "https://github.com/samuelnovaes/routerfy/issues"
 	},
-	"homepage": "https://github.com/samuelnovaes/routerfy#readme",
-	"dependencies": {
-		"express": "^4.16.3"
-	}
+	"homepage": "https://github.com/samuelnovaes/routerfy#readme"
 }

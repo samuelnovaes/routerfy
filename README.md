@@ -1,6 +1,6 @@
 # routerfy
 
-Automatic route generator for Express
+Nuxt like router for Express
 
 [![NPM](https://nodei.co/npm/routerfy.png)](https://nodei.co/npm/routerfy/)
 
@@ -10,7 +10,9 @@ Automatic route generator for Express
 npm install routerfy
 ```
 
-# Example
+# Usage
+
+Routerfy automatically generates the routes based on your file tree inside the routes directory.
 
 ```javascript
 const express = require('express')
@@ -18,50 +20,60 @@ const routerfy = require('routerfy')
 
 const app = express()
 
-//Generate routes from 'routes' directory
-app.use('/api', routerfy('routes'))
+app.use(routerfy('routes'))
 
 app.listen(8080)
 ```
 
-## Routes directory
+# Basic routes
+
+This file tree:
 
 ```
-routes
-|---index.js
-|---foo.js
-|---bar.js
-└---dir
-	|---index.js
-	|---foo.js
-	└---bar.js
+pages/
+--| user/
+-----| index.js
+-----| one.js
+--| index.js
 ```
 
-## Example of JS router file
+will automatically generate:
 
-routes/foo.js
+- /
+- /user
+- /user/one
+
+# Dynamic routes
+
+To define a dynamic route with a parameter, you need to define a JavaScript file OR a directory prefixed by an underscore.
+
+This file tree:
+
+```
+pages/
+--| _slug/
+-----| comments.js
+-----| index.js
+--| users/
+-----| _id.js
+--| index.js
+```
+
+will automatically generate:
+
+- /
+- /users/:id
+- /:slug
+- /:slug/comments
+
+> Note: For dynamic routes to work properly, you must use the `{ mergeParams: true }`javascript option when calling the express.Router function
 
 ```javascript
-	const router = require('express').Router()
+const router = require('express').Router({ mergeParams: true });
 
-	//router.get, router.post, router.put, router.delete, ...
-	router.get('/', (req, res) => {
-		res.send('I am foo.js')
-	})
+router.get('/', (req, res) => {
+	res.send(req.params.slug);
+});
 
-	//It must be exports._router to work properly. If not, this file will be ignored
-	exports._router = router
+module.exports = router;
 ```
-
-## Generated routes
-
-*   /api/
-*   /api/foo
-*   /api/bar
-*   /api/dir
-*   /api/dir/foo
-*   /api/dir/bar
-
-# Important
-
-In case of creating a router with `routes/foo.js` and `routes/foo/index.js`, the priority is `routes/foo/index.js`.

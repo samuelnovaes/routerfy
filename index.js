@@ -1,25 +1,43 @@
-const fs = require('fs')
-const path = require('path')
+const fs = require('fs');
+const express = require('express');
+const path = require('path');
 
-const routerfy = (directory, router) => {
-	const files = fs.readdirSync(directory)
-	files.map(file => {
-		const filePath = path.join(directory, file)
-		const stat = fs.statSync(filePath)
-		if (stat.isFile() && path.extname(file) == '.js') {
-			const routerModule = require(path.resolve(filePath))
-			if (routerModule._router)
-				router.use(`/${(file == 'index.js' ? '' : path.basename(file, '.js'))}`, routerModule._router)
+const walk = (directory, router) => {
+
+	const items = fs.readdirSync(directory);
+
+	for (const item of items) {
+
+		const itemPath = path.join(directory, item);
+		const stat = fs.statSync(itemPath);
+		const itemName = path.basename(item, '.js');
+
+		let routePath;
+		if (itemName == 'index') {
+			routePath = '/'
 		}
-		else if (stat.isDirectory())
-			router.use(`/${file}`, middleware(filePath))
-	})
+		else if (itemName[0] == '_') {
+			routePath = `/:${itemName.substr(1)}`
+		}
+		else {
+			routePath = `/${itemName}`
+		}
+
+		if (stat.isFile()) {
+			router.use(routePath, require(path.resolve(itemPath)))
+		}
+		else if (stat.isDirectory()) {
+			router.use(routePath, middleware(itemPath))
+		}
+
+	}
+
 }
 
 const middleware = (directory) => {
-	const router = require('express').Router()
-	routerfy(directory, router)
-	return router
+	const router = express.Router({ mergeParams: true });
+	walk(directory, router);
+	return router;
 }
 
-module.exports = middleware
+module.exports = middleware;
