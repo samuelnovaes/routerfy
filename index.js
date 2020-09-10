@@ -10,24 +10,23 @@ const walk = (directory, router) => {
 
 		const itemPath = path.join(directory, item);
 		const stat = fs.statSync(itemPath);
-		const itemName = path.basename(item, '.js');
+		if (item.includes(".js") || item.includes(".ts")) {
+			let itemName = item.split(".")[0];
 
-		let routePath;
-		if (itemName == 'index') {
-			routePath = '/'
-		}
-		else if (itemName[0] == '_') {
-			routePath = `/:${itemName.substr(1)}`
-		}
-		else {
-			routePath = `/${itemName}`
-		}
+			let routePath;
+			if (itemName == 'index') {
+				routePath = '/'
+			} else if (itemName[0] == '_') {
+				routePath = `/:${itemName.substr(1)}`
+			} else {
+				routePath = `/${itemName}`
+			}
 
-		if (stat.isFile()) {
-			router.use(routePath, require(path.resolve(itemPath)))
-		}
-		else if (stat.isDirectory()) {
-			router.use(routePath, middleware(itemPath))
+			if (stat.isFile()) {
+				router.use(routePath, require(path.resolve(itemPath)))
+			} else if (stat.isDirectory()) {
+				router.use(routePath, middleware(itemPath))
+			}
 		}
 
 	}
